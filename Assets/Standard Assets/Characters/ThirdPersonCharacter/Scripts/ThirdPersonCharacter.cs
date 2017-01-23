@@ -87,6 +87,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			}
 			else
 			{
+				if(m_Rigidbody==null) return;
 				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
 				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
 				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
@@ -105,6 +106,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// prevent standing up in crouch-only zones
 			if (!m_Crouching)
 			{
+				if(m_Rigidbody == null) return;
 				Ray crouchRay = new Ray(m_Rigidbody.position + Vector3.up * m_Capsule.radius * k_Half, Vector3.up);
 				float crouchRayLength = m_CapsuleHeight - m_Capsule.radius * k_Half;
 				if (Physics.SphereCast(crouchRay, m_Capsule.radius * k_Half, crouchRayLength, Physics.AllLayers, QueryTriggerInteraction.Ignore))
@@ -118,12 +120,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		void UpdateAnimator(Vector3 move)
 		{
 			// update the animator parameters
-			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
-			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
-			m_Animator.SetBool("Crouch", m_Crouching);
-			m_Animator.SetBool("OnGround", m_IsGrounded);
+			//m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
+			//m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
+			//m_Animator.SetBool("Crouch", m_Crouching);
+			//m_Animator.SetBool("OnGround", m_IsGrounded);
 			if (!m_IsGrounded)
 			{
+				if(m_Rigidbody == null) return;
 				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
 			}
 
@@ -136,7 +139,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			float jumpLeg = (runCycle < k_Half ? 1 : -1) * m_ForwardAmount;
 			if (m_IsGrounded)
 			{
-				m_Animator.SetFloat("JumpLeg", jumpLeg);
+			//	m_Animator.SetFloat("JumpLeg", jumpLeg);
 			}
 
 			// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,
@@ -157,6 +160,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		{
 			// apply extra gravity from multiplier:
 			Vector3 extraGravityForce = (Physics.gravity * m_GravityMultiplier) - Physics.gravity;
+			if(m_Rigidbody == null) return;
 			m_Rigidbody.AddForce(extraGravityForce);
 
 			m_GroundCheckDistance = m_Rigidbody.velocity.y < 0 ? m_OrigGroundCheckDistance : 0.01f;
@@ -212,13 +216,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			{
 				m_GroundNormal = hitInfo.normal;
 				m_IsGrounded = true;
-				m_Animator.applyRootMotion = true;
+				if(m_Animator != null) m_Animator.applyRootMotion = true;
 			}
 			else
 			{
 				m_IsGrounded = false;
 				m_GroundNormal = Vector3.up;
-				m_Animator.applyRootMotion = false;
+				if(m_Animator != null) m_Animator.applyRootMotion = false;
 			}
 		}
 	}

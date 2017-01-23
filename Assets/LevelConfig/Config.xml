@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<level>
+  <wave>
+    <id>1</id>
+    <citizens>15</citizens>
+  </wave>
+  <wave>
+    <id>2</id>
+    <citizens>20</citizens>
+  </wave>
+  <wave>
+    <id>3</id>
+    <citizens>25</citizens>
+  </wave>
+  <wave>
+    <id>4</id>
+    <citizens>30</citizens>
+  </wave>
+  <wave>
+    <id>5</id>
+    <citizens>40</citizens>
+  </wave>
+</level>
