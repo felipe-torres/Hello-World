@@ -35,6 +35,7 @@ public class Citizen : MonoBehaviour
 	{
 		if (IsMoving && NavMeshAgent.enabled)
 		{
+			if(NavMeshAgent == null) return;
 			NavMeshAgent.destination = TargetPlayer.position;
 		}
 	}

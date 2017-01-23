@@ -9932,8 +9932,8 @@ MonoBehaviour:
   - que estufas
   - chinga tu madre
   - jodete
-  - Jodanse
-  - fuckoff
+  - jodanse
+  - fuck off
   - buenas noches
   - yo man
   - how you doin
@@ -9941,6 +9941,11 @@ MonoBehaviour:
   - que hay
   - get out of here
   - get good
+  - vayanse
+  - good afternoon
+  - good night
+  - buenas tardes
+  - buenas noches
   speechText: {fileID: 622684781}
 --- !u!114 &1517490561
 MonoBehaviour:

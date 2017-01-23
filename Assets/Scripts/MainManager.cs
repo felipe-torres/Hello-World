@@ -21,6 +21,7 @@ using System.Linq;
         | |  |  ``/  /`  /
        /,_|  |   /,_/   /
           /,_/      '`-'
+GGJ2017
 */
 /// </summary>
 
@@ -157,7 +158,7 @@ public class MainManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
 
             int maxEnemies = listaLevels.ElementAt(ActualWave - 1).citizens;
-            int elevatorsToUse = Random.Range(1, 4);
+            int elevatorsToUse = Random.Range(1, 5);
 
             print(elevatorsToUse + " elevators to use");
 
@@ -288,6 +289,11 @@ public class MainManager : MonoBehaviour
         Player.EnemiesStuck = 0;
         HasGameOverStarted = false;
         gm.SetGameState(GameState.MainMenu);
+
+        foreach (Elevator e in Elevators) 
+        {
+            e.Descend();
+        }
 
     }
 
